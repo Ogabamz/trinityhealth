@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Health Assessment - Trinity Heart Health</title>
+  <meta name="description" content="Complete your personalized heart health assessment for Nigerian pastors.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'trinity-blue': '#1a4d7d',
+            'trinity-gold': '#d4af37',
+            'trinity-navy': '#0a2540',
+            'trinity-light': '#e8f1f8',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .option-btn {
+      transition: all 0.2s ease;
+      min-height: 48px;
+    }
+    .option-btn:active {
+      transform: scale(0.98);
+    }
+    .option-btn.selected {
+      background-color: #1a4d7d;
+      color: white;
+      border-color: #1a4d7d;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26, 77, 125, 0.3);
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .question-slide-in {
+      animation: slideIn 0.4s ease-out forwards;
+    }
+    
+    .progress-bar-fill {
+      transition: width 0.5s ease;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #d4af37;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    }
+    
+    .question-card {
+      border-left: 4px solid #d4af37;
+    }
+  </style>
+  <!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1493941745182797');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1493941745182797&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 antialiased">
+
+  <!-- Progress Bar (Fixed at top) -->
+  <div id="progress-container" class="fixed top-0 left-0 right-0 bg-white shadow-md z-50 hidden">
+    <div class="h-2 bg-gray-200">
+      <div id="progress-bar" class="h-full bg-gradient-to-r from-trinity-blue to-trinity-gold progress-bar-fill" style="width: 0%"></div>
+    </div>
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between text-sm">
+        <div class="flex items-center">
+          <svg class="w-5 h-5 text-trinity-gold mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+          <span class="font-semibold text-trinity-navy">Question <span id="current-question">1</span> of <span id="total-questions">15</span></span>
+        </div>
+        <div class="text-gray-600">
+          <span id="progress-percentage">0</span>% Complete
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="min-h-screen flex items-center justify-center p-4 sm:p-6 pt-24 sm:pt-6">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden">
+      
+      <!-- Header -->
+      <header class="bg-gradient-to-r from-trinity-navy to-trinity-blue text-white p-6 sm:p-8">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold mb-2">Trinity Heart Health Assessment</h1>
+            <p class="text-gray-200 text-sm sm:text-base">Discover your personalized heart health score and recommendations</p>
+          </div>
+          <div class="hidden sm:block">
+            <svg class="w-16 h-16 text-trinity-gold opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <main class="p-6 sm:p-8">
+        <!-- Error Message -->
+        <div id="error-message" class="hidden bg-red-50 border-l-4 border-red-500 text-red-800 px-4 py-3 rounded-lg mb-6 shadow-sm" role="alert">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+            </svg>
+            <div>
+              <strong class="font-bold">Error: </strong>
+              <span id="error-text"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Information Section -->
+        <section id="contact-section" class="space-y-6">
+          <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-trinity-gold rounded-full mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+              </svg>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-trinity-navy mb-2">Before We Begin...</h2>
+            <p class="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+              Please provide your contact information so we can send your personalized results and follow-up recommendations.
+            </p>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-6 space-y-5">
+            <div>
+              <label for="fullName" class="block text-sm font-semibold text-gray-700 mb-2">
+                Full Name <span class="text-red-500">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="fullName" 
+                required
+                placeholder="Pastor John Adebayo"
+                class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-base transition-all duration-200"
+              />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+                  Email Address <span class="text-red-500">*</span>
+                </label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  required
+                  placeholder="pastor@church.com"
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-base transition-all duration-200"
+                />
+              </div>
+
+              <div>
+                <label for="whatsapp" class="block text-sm font-semibold text-gray-700 mb-2">
+                  WhatsApp Number <span class="text-red-500">*</span>
+                </label>
+                <input 
+                  type="tel" 
+                  id="whatsapp" 
+                  required
+                  placeholder="+234 800 123 4567"
+                  pattern="[\+]?[0-9]{10,15}"
+                  class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-base transition-all duration-200"
+                />
+                <p class="text-xs text-gray-500 mt-1">Include country code (e.g., +234)</p>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start">
+              <svg class="w-5 h-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+              <p class="text-sm text-blue-800">
+                <strong>Privacy Guarantee:</strong> Your information is 100% confidential and will never be shared with third parties.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <button 
+              type="button" 
+              id="start-quiz-btn" 
+              class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center"
+            >
+              <span>Start Assessment</span>
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+          </div>
+        </section>
+
+        <!-- Quiz Form -->
+        <form id="quiz-form" class="hidden">
+          <!-- Health Questions Section -->
+          <section id="health-section" class="space-y-6 mb-8">
+            <div class="bg-trinity-light border-l-4 border-trinity-blue rounded-lg p-4 mb-6">
+              <h3 class="text-xl font-bold text-trinity-navy flex items-center">
+                <svg class="w-6 h-6 mr-2 text-trinity-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Part 1: Heart Health & Lifestyle Assessment
+              </h3>
+              <p class="text-gray-700 mt-2">Answer honestly for the most accurate results</p>
+            </div>
+            <div id="questions-health" class="space-y-5"></div>
+          </section>
+
+          <!-- Additional Questions Section -->
+          <section id="additional-section" class="space-y-6 mb-8">
+            <div class="bg-purple-50 border-l-4 border-purple-500 rounded-lg p-4 mb-6">
+              <h3 class="text-xl font-bold text-purple-900 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                Part 2: Personalization Questions
+              </h3>
+              <p class="text-gray-700 mt-2">Help us understand your goals and situation</p>
+            </div>
+            <div id="questions-additional" class="space-y-5"></div>
+          </section>
+
+          <!-- Submit Button -->
+          <div class="flex flex-col sm:flex-row gap-4 items-center justify-between bg-gray-50 rounded-xl p-6">
+            <div class="flex items-center text-sm text-gray-600">
+              <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span>All questions answered</span>
+            </div>
+            <button 
+              type="submit" 
+              class="w-full sm:w-auto bg-gradient-to-r from-trinity-blue to-trinity-gold hover:from-trinity-navy hover:to-trinity-blue text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
+            >
+              <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+              <span>Get My Results</span>
+            </button>
+          </div>
+        </form>
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-gray-100 border-t border-gray-200 p-4 text-center text-xs text-gray-500">
+        <p>© 2025 Trinity Heart Health | Coach Maryam Bamidele, Certified Wellness Coach</p>
+        <p class="mt-1">Your responses are confidential and secure</p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Question Data
+    const HEALTH_QUESTIONS = [
+      {id:1, q:"Do you regularly check your blood pressure at least once every month?", type:'yesno', healthy:'yes', weight:1},
+      {id:2, q:"Has a doctor ever told you that you have high blood pressure (hypertension)?", type:'yesno', healthy:'no', weight:2},
+      {id:3, q:"Do you take any medication daily for heart disease, high blood pressure, or high cholesterol?", type:'yesno', healthy:'no', weight:2},
+      {id:4, q:"Do you experience regular dizziness, chest discomfort, or shortness of breath during routine activities?", type:'yesno', healthy:'no', weight:3},
+      {id:5, q:"How often do you eat fried or heavily processed foods each week?", type:'choice', options:['0-1 times','2-4 times','5+ times'], healthyIndex:0, weight:2},
+      {id:6, q:"How many days per week do you do at least 30 minutes of moderate activity (walking, gardening, light exercise)?", type:'choice', options:['0-1 days','2-3 days','4+ days'], healthyIndex:2, weight:2},
+      {id:7, q:"Do you smoke cigarettes or use tobacco products currently?", type:'yesno', healthy:'no', weight:3},
+      {id:8, q:"Do you drink alcohol more than twice a week (more than 2 small drinks per occasion)?", type:'yesno', healthy:'no', weight:1},
+      {id:9, q:"Do you have a family history of early heart disease (a parent or sibling with heart attack or stroke before age 60)?", type:'yesno', healthy:'no', weight:2},
+      {id:10, q:"Have you been diagnosed with diabetes or high blood sugar?", type:'yesno', healthy:'no', weight:2}
+    ];
+
+    const ADDITIONAL_QUESTIONS = [
+      {id:11, q:"What best describes your current ministry position?", type:'choice', options:['Lead Pastor (Independent church or senior leader)','Branch Pastor (Overseeing a local branch/chapter)','Associate/Assistant Pastor','Ministry Leader (Youth, Music, Admin)','Other Church Leadership Role']},
+      {id:12, q:"What health outcome would you most like to achieve in the next 90 days?", type:'choice', options:['Lower my blood pressure to healthy levels','Increase my daily energy and reduce fatigue','Reduce dependence on medications (with doctor\'s guidance)','Prevent a health crisis before it happens','Just maintain my current good health']},
+      {id:13, q:"What is the biggest obstacle preventing you from improving your heart health right now?", type:'choice', options:['Too busy with ministry duties','Don\'t know which supplements actually work','Cost of quality health products','Already tried things that didn\'t work','Don\'t think I have a problem yet']},
+      {id:14, q:"Which solution would you be most interested in?", type:'choice', options:['I want to buy the complete Forever Living Heart Health Pack now','I want to speak with a wellness coach first','I want free tips and information to try on my own','I\'m just researching options for now']},
+      {id:15, q:"Is there anything else you\'d like us to know about your health situation or concerns?", type:'textarea', required:false}
+    ];
+
+    const TOTAL_QUESTIONS = HEALTH_QUESTIONS.length + ADDITIONAL_QUESTIONS.length;
+    document.getElementById('total-questions').textContent = TOTAL_QUESTIONS;
+
+    // Render Questions
+    function renderQuestions(questions, containerId) {
+      const container = document.getElementById(containerId);
+      questions.forEach((q, index) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'question-card bg-white border-2 border-gray-200 rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-200 question-slide-in';
+        wrapper.style.animationDelay = `${index * 0.05}s`;
+        wrapper.id = `question-${q.id}`;
+        
+        let html = `
+          <div class="flex items-start mb-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-trinity-gold rounded-full flex items-center justify-center text-white font-bold text-sm mr-3 mt-1">
+              ${q.id}
+            </div>
+            <label class="block font-semibold text-gray-800 text-base sm:text-lg flex-grow">
+              ${q.q}
+              ${q.required === false ? '<span class="text-gray-400 text-sm font-normal ml-2">(Optional)</span>' : ''}
+            </label>
+          </div>
+        `;
+        
+        if (q.type === 'yesno') {
+          html += `
+            <div class="flex gap-3 ml-11">
+              <button type="button" data-qid="${q.id}" data-val="yes" class="option-btn flex-1 px-6 py-3 border-2 border-gray-300 rounded-lg font-semibold text-gray-700 hover:border-trinity-blue transition-all">
+                ✓ Yes
+              </button>
+              <button type="button" data-qid="${q.id}" data-val="no" class="option-btn flex-1 px-6 py-3 border-2 border-gray-300 rounded-lg font-semibold text-gray-700 hover:border-trinity-blue transition-all">
+                ✗ No
+              </button>
+            </div>
+          `;
+        } else if (q.type === 'choice') {
+          html += `
+            <select data-qid="${q.id}" class="ml-11 w-full sm:w-auto min-w-[300px] px-4 py-3 border-2 border-gray-300 rounded-lg text-base font-medium text-gray-700 bg-white transition-all duration-200">
+              <option value="" disabled selected>-- Select an option --</option>
+          `;
+          q.options.forEach((opt, idx) => {
+            html += `<option value="${idx}">${opt}</option>`;
+          });
+          html += `</select>`;
+        } else if (q.type === 'textarea') {
+          html += `
+            <textarea 
+              data-qid="${q.id}" 
+              class="ml-11 w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-base transition-all duration-200" 
+              rows="4" 
+              placeholder="Share any additional details that would help us serve you better..."
+            ></textarea>
+          `;
+        }
+        
+        wrapper.innerHTML = html;
+        container.appendChild(wrapper);
+      });
+    }
+
+    renderQuestions(HEALTH_QUESTIONS, 'questions-health');
+    renderQuestions(ADDITIONAL_QUESTIONS, 'questions-additional');
+
+    // Handle Yes/No Button Clicks
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.option-btn');
+      if (!btn) return;
+      
+      const qid = btn.dataset.qid;
+      const parent = btn.parentElement;
+      
+      // Remove selected class from all buttons in this question
+      Array.from(parent.querySelectorAll('.option-btn')).forEach(b => {
+        b.classList.remove('selected');
+      });
+      
+      // Add selected class to clicked button
+      btn.classList.add('selected');
+      parent.dataset.value = btn.dataset.val;
+      
+      updateProgress();
+    });
+
+    // Handle Select Change
+    document.addEventListener('change', e => {
+      if (e.target.matches('select[data-qid]') || e.target.matches('textarea[data-qid]')) {
+        updateProgress();
+      }
+    });
+
+    // Error Handling
+    function showError(message, element) {
+      const errorDiv = document.getElementById('error-message');
+      const errorText = document.getElementById('error-text');
+      
+      errorText.textContent = message;
+      errorDiv.classList.remove('hidden');
+      
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        element.style.borderColor = '#ef4444';
+        element.style.borderWidth = '3px';
+        
+        setTimeout(() => {
+          element.style.borderColor = '';
+          element.style.borderWidth = '';
+        }, 3000);
+      }
+    }
+
+    function clearErrors() {
+      document.getElementById('error-message').classList.add('hidden');
+      ['fullName', 'email', 'whatsapp'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.style.borderColor = '';
+          el.style.borderWidth = '';
+        }
+      });
+    }
+
+    // Progress Tracking
+    function updateProgress() {
+      let answeredCount = 0;
+      
+      HEALTH_QUESTIONS.forEach(q => {
+        if (q.type === 'yesno') {
+          const parent = document.querySelector(`[data-qid='${q.id}']`)?.parentElement;
+          if (parent?.dataset.value) answeredCount++;
+        } else if (q.type === 'choice') {
+          const sel = document.querySelector(`select[data-qid='${q.id}']`);
+          if (sel?.value !== '') answeredCount++;
+        }
+      });
+      
+      ADDITIONAL_QUESTIONS.forEach(q => {
+        if (q.type === 'choice') {
+          const sel = document.querySelector(`select[data-qid='${q.id}']`);
+          if (sel?.value !== '') answeredCount++;
+        } else if (q.type === 'textarea' && q.required !== false) {
+          const textarea = document.querySelector(`textarea[data-qid='${q.id}']`);
+          if (textarea?.value.trim()) answeredCount++;
+        }
+      });
+      
+      const progress = Math.round((answeredCount / TOTAL_QUESTIONS) * 100);
+      document.getElementById('progress-bar').style.width = `${progress}%`;
+      document.getElementById('progress-percentage').textContent = progress;
+      document.getElementById('current-question').textContent = answeredCount + 1;
+    }
+
+    // Start Quiz Button
+    document.getElementById('start-quiz-btn').addEventListener('click', (e) => {
+      const startBtn = e.currentTarget;
+      const originalBtnContent = startBtn.innerHTML;
+      startBtn.disabled = true;
+      startBtn.innerHTML = `
+        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Processing...
+      `;
+
+      clearErrors();
+      
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const whatsapp = document.getElementById('whatsapp').value.trim();
+      
+      const resetBtn = () => {
+        startBtn.disabled = false;
+        startBtn.innerHTML = originalBtnContent;
+      };
+
+      if (!fullName) {
+        showError('Please enter your full name.', document.getElementById('fullName'));
+        resetBtn();
+        return;
+      }
+      
+      if (!email) {
+        showError('Please enter your email address.', document.getElementById('email'));
+        resetBtn();
+        return;
+      }
+      
+      if (!email.includes('@') || !email.includes('.')) {
+        showError('Please enter a valid email address.', document.getElementById('email'));
+        resetBtn();
+        return;
+      }
+      
+      if (!whatsapp) {
+        showError('Please enter your WhatsApp number.', document.getElementById('whatsapp'));
+        resetBtn();
+        return;
+      }
+      
+      const phoneRegex = /[\+]?[0-9]{10,15}/;
+      if (!phoneRegex.test(whatsapp)) {
+        showError('Please enter a valid WhatsApp number with country code.', document.getElementById('whatsapp'));
+        resetBtn();
+        return;
+      }
+      
+      // Store contact info
+      sessionStorage.setItem('quizContact', JSON.stringify({
+        fullName,
+        email,
+        whatsapp,
+        startTime: Date.now()
+      }));
+      
+      // Hide contact section, show quiz
+      document.getElementById('contact-section').classList.add('hidden');
+      document.getElementById('quiz-form').classList.remove('hidden');
+      document.getElementById('progress-container').classList.remove('hidden');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Submit Form
+    document.getElementById('quiz-form').addEventListener('submit', e => {
+      e.preventDefault();
+      clearErrors();
+
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalBtnContent = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Processing...
+      `;
+      
+      const contact = JSON.parse(sessionStorage.getItem('quizContact'));
+      const answers = {};
+      let totalPoints = 0;
+      let maxPoints = 0;
+      let firstUnanswered = null;
+      
+      // Validate and score health questions
+      for (const q of HEALTH_QUESTIONS) {
+        maxPoints += q.weight;
+        let answered = false;
+        
+        if (q.type === 'yesno') {
+          const parent = document.querySelector(`[data-qid='${q.id}']`)?.parentElement;
+          const val = parent?.dataset.value;
+          if (val) {
+            answers[`q${q.id}`] = val;
+            if (val === q.healthy) totalPoints += q.weight;
+            answered = true;
+          }
+        } else if (q.type === 'choice') {
+          const sel = document.querySelector(`select[data-qid='${q.id}']`);
+          const idx = parseInt(sel.value, 10);
+          if (!isNaN(idx)) {
+            answers[`q${q.id}`] = q.options[idx];
+            if (idx === q.healthyIndex) totalPoints += q.weight;
+            answered = true;
+          }
+        }
+        
+        if (!answered && !firstUnanswered) {
+          firstUnanswered = q.id;
+        }
+      }
+      
+      if (firstUnanswered) {
+        const questionEl = document.getElementById(`question-${firstUnanswered}`);
+        showError('Please answer all health questions to get accurate results.', questionEl);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnContent;
+        return;
+      }
+      
+      // Collect additional questions
+      ADDITIONAL_QUESTIONS.forEach(q => {
+        if (q.type === 'choice') {
+          const sel = document.querySelector(`select[data-qid='${q.id}']`);
+          const idx = parseInt(sel.value, 10);
+          if (!isNaN(idx)) {
+            answers[`q${q.id}`] = q.options[idx];
+          }
+        } else if (q.type === 'textarea') {
+          const textarea = document.querySelector(`textarea[data-qid='${q.id}']`);
+          answers[`q${q.id}`] = textarea.value.trim();
+        }
+      });
+      
+      // Calculate final score percentage
+      const scorePercentage = Math.round((totalPoints / maxPoints) * 100);
+      
+      // Calculate completion time
+      const completionTime = Math.round((Date.now() - contact.startTime) / 1000);
+      
+      // Prepare result data
+      const resultData = {
+        contact: contact,
+        answers: answers,
+        scoring: {
+          totalPoints: totalPoints,
+          maxPoints: maxPoints,
+          scorePercentage: scorePercentage
+        },
+        completionTime: completionTime,
+        timestamp: new Date().toISOString()
+      };
+      
+      // Store result
+      sessionStorage.setItem('quizResult', JSON.stringify(resultData));
+      
+      // Redirect to results page
+      window.location.href = 'results.html';
+    });
+
+  </script>
+</body>
+</html>

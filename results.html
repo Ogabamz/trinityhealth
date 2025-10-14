@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Heart Health Results - Trinity Heart Health</title>
+  <meta name="description" content="Your personalized heart health assessment results and recommendations.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'trinity-blue': '#1a4d7d',
+            'trinity-gold': '#d4af37',
+            'trinity-navy': '#0a2540',
+            'trinity-light': '#e8f1f8',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes gaugeRotate {
+      from { stroke-dashoffset: 251.2; }
+      to { stroke-dashoffset: var(--gauge-offset); }
+    }
+    
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .animate-scale-in {
+      animation: scaleIn 0.5s ease-out forwards;
+    }
+    
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    
+    .gauge-fill {
+      animation: gaugeRotate 1.5s ease-out forwards;
+    }
+  </style>
+  <!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1493941745182797');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1493941745182797&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 antialiased">
+
+  <div class="min-h-screen py-8 px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto">
+      
+      <!-- Results Container -->
+      <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+        
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-trinity-navy to-trinity-blue text-white p-6 sm:p-8 text-center">
+          <div class="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
+            <span class="text-sm font-semibold">✓ Assessment Complete</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold mb-2">Your Heart Health Results</h1>
+          <p class="text-gray-200 text-base sm:text-lg" id="user-greeting">Loading your personalized assessment...</p>
+        </header>
+
+        <main class="p-6 sm:p-10" id="results-container">
+          <!-- Dynamic content will be inserted here -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white p-8 sm:p-10">
+          <div class="max-w-4xl mx-auto">
+            <h3 class="text-2xl font-bold text-center mb-6 text-trinity-gold">Contact Coach Maryam Bamidele</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+              <a href="https://wa.me/2349063483741" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-4 rounded-xl text-center transition-all transform hover:scale-105 flex flex-col items-center">
+                <svg class="w-8 h-8 mb-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                <span class="font-semibold">WhatsApp</span>
+              </a>
+              
+              <a href="mailto:olivianaturalsconsult@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-xl text-center transition-all transform hover:scale-105 flex flex-col items-center">
+                <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span class="font-semibold">Email</span>
+              </a>
+              
+              <a href="[FACEBOOK_PAGE_URL]" target="_blank" class="bg-blue-800 hover:bg-blue-900 text-white p-4 rounded-xl text-center transition-all transform hover:scale-105 flex flex-col items-center">
+                <svg class="w-8 h-8 mb-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                <span class="font-semibold">Facebook</span>
+              </a>
+            </div>
+            
+            <div class="text-center text-sm text-gray-400 border-t border-gray-700 pt-6">
+              <p class="mb-2">© 2025 Trinity Heart Health | Coach Maryam Bamidele, Certified Wellness Coach</p>
+              <p class="text-xs">
+                <strong>Health Disclaimer:</strong> This assessment is for informational purposes only and does not constitute medical advice. Always consult with your healthcare provider before starting any supplement program.
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // GOOGLE SHEETS LOGGING
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyI5dmZ78uc0Vfrr19hX1YzfjerFyBY93G-HhLV1jdgGf1h3pwWn0wgOZNDxNz39UdsRQ/exec';
+    
+    async function logToGoogleSheets(data) {
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        console.log('✓ Data logged to Google Sheets');
+      } catch (error) {
+        console.error('Error logging to Google Sheets:', error);
+        // Store failed log locally
+        const failedLogs = JSON.parse(localStorage.getItem('failedLogs') || '[]');
+        failedLogs.push({ timestamp: new Date().toISOString(), data, error: error.toString() });
+        localStorage.setItem('failedLogs', JSON.stringify(failedLogs));
+      }
+    }
+
+    // SCORING & RISK ASSESSMENT LOGIC
+    function calculateRiskLevel(scorePercentage, answers) {
+      const riskFactors = [];
+      
+      // Identify critical risk factors
+      if (answers.q2 === 'yes') riskFactors.push('Diagnosed Hypertension');
+      if (answers.q4 === 'yes') riskFactors.push('Active Symptoms');
+      if (answers.q7 === 'yes') riskFactors.push('Tobacco Use');
+      if (answers.q10 === 'yes') riskFactors.push('Diabetes');
+      if (answers.q9 === 'yes') riskFactors.push('Family History');
+      
+      let level, color, icon, message, urgency;
+      
+      if (scorePercentage >= 80) {
+        level = 'LOW RISK';
+        color = 'green';
+        icon = '✅';
+        message = 'Excellent! Your heart health practices are strong.';
+        urgency = 'maintenance';
+      } else if (scorePercentage >= 60) {
+        level = 'MODERATE RISK';
+        color = 'yellow';
+        icon = '⚠️';
+        message = 'Good foundation, but there\'s room for improvement.';
+        urgency = 'improvement';
+      } else if (scorePercentage >= 40) {
+        level = 'ELEVATED RISK';
+        color = 'orange';
+        icon = '🔴';
+        message = 'Several risk factors need attention soon.';
+        urgency = 'attention';
+      } else {
+        level = 'HIGH RISK';
+        color = 'red';
+        icon = '🚨';
+        message = 'Urgent attention needed - multiple risk factors present.';
+        urgency = 'urgent';
+      }
+      
+      return { level, color, icon, message, urgency, riskFactors };
+    }
+
+    function generateInsights(answers, riskInfo) {
+      const insights = [];
+      
+      // Critical symptoms
+      if (answers.q4 === 'yes') {
+        insights.push({
+          title: 'Immediate Symptoms Require Attention',
+          text: 'You reported experiencing dizziness, chest discomfort, or shortness of breath. These are warning signs that should not be ignored. While natural supplements can support heart health, you should also consult with your doctor about these symptoms.',
+          icon: '🎯',
+          priority: 'high'
+        });
+      }
+      
+      // Diagnosed conditions
+      if (answers.q2 === 'yes') {
+        insights.push({
+          title: 'Managing Your Blood Pressure Naturally',
+          text: 'With diagnosed hypertension, you can benefit significantly from natural support alongside your medical care. Forever Living\'s Heart Health Pack contains compounds clinically shown to support healthy blood pressure levels.',
+          icon: '🎯',
+          priority: 'high'
+        });
+      }
+      
+      // Lifestyle factors
+      if (answers.q5 === '5+ times' || answers.q6 === '0-1 days') {
+        insights.push({
+          title: 'Lifestyle Factors Are Your Leverage Point',
+          text: 'Your diet and activity patterns are the primary areas for improvement. Small changes here, combined with targeted nutritional support, can produce dramatic results quickly.',
+          icon: '⚡',
+          priority: 'medium'
+        });
+      }
+      
+      // Tobacco use
+      if (answers.q7 === 'yes') {
+        insights.push({
+          title: 'Tobacco Use: The Single Biggest Risk',
+          text: 'Smoking is the #1 preventable risk factor for heart disease. Quitting smoking, combined with heart-healthy supplements, can reduce your risk by up to 50% within just one year.',
+          icon: '⚡',
+          priority: 'high'
+        });
+      }
+      
+      // Family history
+      if (answers.q9 === 'yes') {
+        insights.push({
+          title: 'Family History Means Prevention is Critical',
+          text: 'With a family history of early heart disease, you have a genetic predisposition. However, lifestyle and nutritional interventions can significantly reduce your inherited risk.',
+          icon: '📖',
+          priority: 'medium'
+        });
+      }
+      
+      // Stress and sleep
+      if (answers.q11 === 'yes' || answers.q14 === 'yes') {
+        insights.push({
+          title: 'Stress and Rest Are Part of Your Healing',
+          text: 'Chronic stress and poor sleep directly impact your cardiovascular health. As you improve your physical health with proper nutrition, also prioritize rest as a spiritual discipline.',
+          icon: '📖',
+          priority: 'medium'
+        });
+      }
+      
+      // Default positive insight
+      if (insights.length === 0) {
+        insights.push({
+          title: 'Prevention Is Your Advantage',
+          text: 'You don\'t have major diagnosed conditions yet, which means prevention is your most powerful tool. Now is the ideal time to establish heart-healthy habits that will serve you for decades of ministry.',
+          icon: '✅',
+          priority: 'low'
+        });
+      }
+      
+      // Add biblical encouragement
+      const biblicalInsights = [
+        {
+          condition: riskInfo.urgency === 'urgent',
+          title: 'God\'s Natural Pharmacy Can Restore You',
+          text: 'Just as the prophet Elisha purified poisoned water with God-given plants, the Lord has provided natural compounds that can support your healing. The Forever Living Heart Health Pack harnesses these biblical provisions in their purest, most effective form.',
+          scripture: '"And God said, Behold, I have given you every herb bearing seed... to you it shall be for meat." - Genesis 1:29',
+          icon: '📖'
+        },
+        {
+          condition: riskInfo.urgency === 'attention' || riskInfo.urgency === 'improvement',
+          title: 'Stewarding Your Temple Body',
+          text: 'As a shepherd of God\'s flock, you cannot afford to neglect the vessel He\'s given you. The Forever Living Heart Health Pack provides the nutritional foundation to support your body\'s God-designed healing systems.',
+          scripture: '"Or do you not know that your body is a temple of the Holy Spirit within you?" - 1 Corinthians 6:19',
+          icon: '📖'
+        },
+        {
+          condition: riskInfo.urgency === 'maintenance',
+          title: 'Maintaining Your Strength for the Long Run',
+          text: 'You\'re stewarding your health well. To sustain decades of fruitful ministry like Moses (who stayed strong until 120), consider how the Forever Living Heart Health Pack can help you maintain this standard.',
+          scripture: '"Moses was 120 years old when he died. His eye was undimmed, and his vigor unabated." - Deuteronomy 34:7',
+          icon: '📖'
+        }
+      ];
+      
+      const selectedBiblical = biblicalInsights.find(bi => bi.condition) || biblicalInsights[1];
+      insights.push(selectedBiblical);
+      
+      // Return top 3 insights
+      return insights.slice(0, 3);
+    }
+
+    function assessQualification(answers, riskInfo) {
+      let qualScore = 0;
+      
+      // Ministry position (financial capacity proxy)
+      const positionScores = {
+        'Lead Pastor (Independent church or senior leader)': 3,
+        'Branch Pastor (Overseeing a local branch/chapter)': 2,
+        'Associate/Assistant Pastor': 1,
+        'Ministry Leader (Youth, Music, Admin)': 1,
+        'Other Church Leadership Role': 1
+      };
+      qualScore += positionScores[answers.q11] || 0;
+      
+      // Urgent goals
+      const urgentGoals = [
+        'Lower my blood pressure to healthy levels',
+        'Reduce dependence on medications (with doctor\'s guidance)',
+        'Prevent a health crisis before it happens'
+      ];
+      if (urgentGoals.includes(answers.q12)) qualScore += 2;
+      
+      // Buying intent
+      const intentScores = {
+        'I want to buy the complete Forever Living Heart Health Pack now': 3,
+        'I want to speak with a wellness coach first': 2,
+        'I want free tips and information to try on my own': 0,
+        'I\'m just researching options for now': 0
+      };
+      qualScore += intentScores[answers.q14] || 0;
+      
+      return {
+        score: qualScore,
+        isHighlyQualified: qualScore >= 6 || riskInfo.urgency === 'urgent',
+        buyingIntent: answers.q14,
+        primaryGoal: answers.q12,
+        mainObstacle: answers.q13
+      };
+    }
+
+    function generateNextSteps(qualification, riskInfo, contact) {
+      const whatsappNumber = '2349063483741';
+      const score = document.getElementById('score-display')?.textContent || '0';
+      const riskLevel = riskInfo.level;
+      const riskFactors = riskInfo.riskFactors.length > 0 ? `My key risk factors are: ${riskInfo.riskFactors.join(', ')}.` : "I have no major risk factors.";
+      
+      if (qualification.isHighlyQualified || riskInfo.urgency === 'urgent') {
+        // High priority path
+        const whatsappMessage = encodeURIComponent(
+          `Hello Coach Maryam, I just completed the Heart Health Assessment. My score was ${score}/100 (${riskLevel}). ${riskFactors} I'd like to discuss the Forever Living Heart Health Pack and create a 90-day plan. My name is ${contact.fullName}.`
+        );
+        
+        return `
+          <div class="bg-red-50 border-l-4 border-red-500 rounded-lg p-6 mb-8 animate-fade-in stagger-4">
+            <div class="flex items-center mb-4">
+              <span class="text-4xl mr-3">🚨</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-red-900">Immediate Action Recommended</h2>
+            </div>
+          </div>
+          
+          <div class="bg-white border-2 border-trinity-gold rounded-2xl p-6 sm:p-8 mb-8 shadow-lg animate-fade-in stagger-4">
+            <h3 class="text-xl sm:text-2xl font-bold text-trinity-navy mb-4 flex items-center">
+              <svg class="w-7 h-7 text-trinity-gold mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+              </svg>
+              Speak With Our Certified Wellness Coach Now
+            </h3>
+            
+            <p class="text-gray-700 mb-6 text-lg">
+              Based on your assessment results, we strongly recommend a personalized consultation to create your 90-day Heart Health Restoration Plan.
+            </p>
+            
+            <div class="bg-gray-50 rounded-xl p-5 mb-6">
+              <p class="font-semibold text-gray-900 mb-3">What You'll Get:</p>
+              <div class="space-y-2">
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-gray-700">Personalized supplement protocol for your specific risk factors</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-gray-700">Lifestyle modification guidance that fits your ministry schedule</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-gray-700">Ongoing support and accountability for 90 days</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-gray-700">Direct access to Coach Maryam via WhatsApp</span>
+                </div>
+              </div>
+            </div>
+            
+            <a href="https://wa.me/${whatsappNumber}?text=${whatsappMessage}" 
+               target="_blank"
+               onclick="trackWhatsAppClick()"
+               class="block w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-lg py-5 px-8 rounded-full shadow-xl transform hover:scale-105 transition-all duration-300 text-center">
+              <span class="flex items-center justify-center">
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                CHAT WITH COACH MARYAM ON WHATSAPP
+              </span>
+            </a>
+            
+            <p class="text-center text-sm text-gray-600 mt-4">
+              💬 Response time: Usually within 2 hours during business hours
+            </p>
+          </div>
+          
+          <div class="bg-gradient-to-r from-trinity-navy to-trinity-blue text-white rounded-2xl p-6 sm:p-8 mb-8 animate-fade-in stagger-4">
+            <h3 class="text-2xl font-bold mb-4 text-trinity-gold">The Forever Living Heart Health Pack</h3>
+            <p class="text-gray-200 mb-6">This is the exact protocol Pastor Adebayo used to transform his health in 21 days:</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <div class="bg-white rounded-lg p-3 mb-3 mx-auto w-20 h-20 flex items-center justify-center">
+                  <span class="text-4xl">🌿</span>
+                </div>
+                <h4 class="font-bold mb-2">Forever Aloe Vera Gel</h4>
+                <p class="text-sm text-gray-200">99.7% pure - supports cardiovascular function</p>
+              </div>
+              
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <div class="bg-white rounded-lg p-3 mb-3 mx-auto w-20 h-20 flex items-center justify-center">
+                  <span class="text-4xl">🐟</span>
+                </div>
+                <h4 class="font-bold mb-2">Forever Arctic Sea</h4>
+                <p class="text-sm text-gray-200">Omega-3 - reduces inflammation</p>
+              </div>
+              
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <div class="bg-white rounded-lg p-3 mb-3 mx-auto w-20 h-20 flex items-center justify-center">
+                  <span class="text-4xl">🧄</span>
+                </div>
+                <h4 class="font-bold mb-2">Forever Garlic Thyme</h4>
+                <p class="text-sm text-gray-200">Supports healthy blood pressure</p>
+              </div>
+            </div>
+            
+            <div class="text-center mt-6">
+              <p class="text-trinity-gold font-bold text-2xl">Complete 90-Day Pack: ₦136000</p>
+              <p class="text-sm text-gray-300 mt-2">Includes wellness coaching support and follow-up</p>
+            </div>
+          </div>
+        `;
+      } else if (qualification.score >= 3) {
+        // Moderate qualification path
+        const whatsappMessage = encodeURIComponent(
+          `Hello Coach Maryam, I completed the Heart Health Assessment. My score was ${score}/100 (${riskLevel}). ${riskFactors} I would like to schedule a free 15-minute consultation. My name is ${contact.fullName}.`
+        );
+        
+        return `
+          <div class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-6 mb-8 animate-fade-in stagger-4">
+            <h2 class="text-2xl sm:text-3xl font-bold text-blue-900 mb-2">Your Recommended Next Steps</h2>
+            <p class="text-gray-700">Let's discuss your specific situation and create a personalized plan</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white border-2 border-trinity-gold rounded-2xl p-6 shadow-lg animate-fade-in stagger-4">
+              <div class="bg-trinity-gold text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
+                RECOMMENDED
+              </div>
+              <h3 class="text-xl font-bold text-trinity-navy mb-3 flex items-center">
+                <svg class="w-6 h-6 text-trinity-gold mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Free Consultation
+              </h3>
+              <p class="text-gray-700 mb-4">Let's discuss your specific situation. No obligation.</p>
+              
+              <ul class="space-y-2 mb-6 text-sm">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>15-minute consultation with Coach Maryam</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Personalized recommendations</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Answer all your questions</span>
+                </li>
+              </ul>
+              
+              <a href="https://wa.me/${whatsappNumber}?text=${whatsappMessage}" 
+                 target="_blank"
+                 onclick="trackWhatsAppClick()"
+                 class="block w-full bg-trinity-gold hover:bg-trinity-navy text-white font-bold py-3 px-6 rounded-full text-center transition-all transform hover:scale-105">
+                Book Free Consultation
+              </a>
+            </div>
+            
+            <div class="bg-white border-2 border-gray-300 rounded-2xl p-6 shadow-lg animate-fade-in stagger-4">
+              <h3 class="text-xl font-bold text-trinity-navy mb-3 flex items-center">
+                <svg class="w-6 h-6 text-trinity-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                Learn More First
+              </h3>
+              <p class="text-gray-700 mb-4">Want to educate yourself before making a decision? We respect that.</p>
+              
+              <ul class="space-y-2 mb-6 text-sm">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Read success stories from other pastors</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Learn about biblical heart health</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Understand natural supplements</span>
+                </li>
+              </ul>
+              
+              <a href="https://ogabamz.github.io/trinityhearthealth/" 
+                 target="_blank"
+                 onclick="trackBlogClick()"
+                 class="block w-full bg-white hover:bg-gray-50 text-trinity-blue border-2 border-trinity-blue font-bold py-3 px-6 rounded-full text-center transition-all transform hover:scale-105">
+                Visit Resource Center
+              </a>
+            </div>
+          </div>
+        `;
+      } else {
+        // Low qualification path
+        return `
+          <div class="bg-green-50 border-l-4 border-green-500 rounded-lg p-6 mb-8 animate-fade-in stagger-4">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-900 mb-2 flex items-center">
+              <span class="mr-3">🎉</span>
+              Keep Up Your Excellent Work!
+            </h2>
+            <p class="text-gray-700">Your heart health practices are strong. Here's how to maintain and optimize:</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white border-2 border-gray-300 rounded-xl p-6 shadow-lg animate-fade-in stagger-4">
+              <div class="text-4xl mb-4">📖</div>
+              <h3 class="text-lg font-bold text-trinity-navy mb-3">Free Resources</h3>
+              <p class="text-gray-700 text-sm mb-4">Access our library of articles on biblical heart health and pastoral wellness.</p>
+              <a href="https://ogabamz.github.io/trinityhearthealth/" 
+                 target="_blank"
+                 onclick="trackBlogClick()"
+                 class="text-trinity-blue font-semibold hover:underline flex items-center">
+                Browse Articles
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+            
+            <div class="bg-white border-2 border-gray-300 rounded-xl p-6 shadow-lg animate-fade-in stagger-4">
+              <div class="text-4xl mb-4">🌱</div>
+              <h3 class="text-lg font-bold text-trinity-navy mb-3">Prevention Protocol</h3>
+              <p class="text-gray-700 text-sm mb-4">The Heart Health Pack can help you maintain optimal function as you age.</p>
+              <a href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Hello Coach Maryam, I scored ${score}/100 on the assessment. I'm interested in prevention and maintenance. Can you tell me more? My name is ${contact.fullName}.`)}" 
+                 target="_blank"
+                 onclick="trackWhatsAppClick()"
+                 class="text-trinity-blue font-semibold hover:underline flex items-center">
+                Learn About Prevention
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+            
+            <div class="bg-white border-2 border-gray-300 rounded-xl p-6 shadow-lg animate-fade-in stagger-4">
+              <div class="text-4xl mb-4">📧</div>
+              <h3 class="text-lg font-bold text-trinity-navy mb-3">Stay Connected</h3>
+              <p class="text-gray-700 text-sm mb-4">Get weekly heart health tips and Biblical wellness insights.</p>
+              <a href="mailto:olivianaturalsconsult@gmail.com?subject=Newsletter Subscription&body=I'd like to subscribe to the Trinity Heart Health newsletter." 
+                 class="text-trinity-blue font-semibold hover:underline flex items-center">
+                Subscribe to Newsletter
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // MAIN RENDER FUNCTION
+    function renderResults() {
+      const resultData = JSON.parse(sessionStorage.getItem('quizResult'));
+      
+      if (!resultData) {
+        document.getElementById('results-container').innerHTML = `
+          <div class="text-center py-12">
+            <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">No Results Found</h2>
+            <p class="text-gray-600 mb-6">Please complete the assessment first to see your results.</p>
+            <a href="questionnaire.html" class="bg-trinity-gold hover:bg-trinity-navy text-white font-bold py-3 px-8 rounded-full inline-block transition-all">
+              Take Assessment
+            </a>
+          </div>
+        `;
+        return;
+      }
+      
+      const { contact, answers, scoring } = resultData;
+      const { scorePercentage } = scoring;
+      
+      // Update greeting
+      document.getElementById('user-greeting').textContent = `${contact.fullName}, here are your personalized results`;
+      
+      // Calculate risk assessment
+      const riskInfo = calculateRiskLevel(scorePercentage, answers);
+      const insights = generateInsights(answers, riskInfo);
+      const qualification = assessQualification(answers, riskInfo);
+      
+      // Color mapping
+      const colorMap = {
+        green: { bg: 'bg-green-500', text: 'text-green-600', border: 'border-green-500' },
+        yellow: { bg: 'bg-yellow-500', text: 'text-yellow-600', border: 'border-yellow-500' },
+        orange: { bg: 'bg-orange-500', text: 'text-orange-600', border: 'border-orange-500' },
+        red: { bg: 'bg-red-500', text: 'text-red-600', border: 'border-red-500' }
+      };
+      const colors = colorMap[riskInfo.color];
+      
+      // Build HTML
+      const html = `
+        <!-- Score Reveal Section -->
+        <div class="text-center mb-12 animate-scale-in">
+          <div class="inline-block mb-6">
+            <div class="relative w-48 h-48 mx-auto">
+              <!-- SVG Gauge -->
+              <svg viewBox="0 0 200 120" class="w-full h-full">
+                <path d="M 20 100 A 80 80 0 0 1 180 100" 
+                      stroke="#e5e7eb" 
+                      stroke-width="20" 
+                      fill="none" 
+                      stroke-linecap="round"/>
+                <path d="M 20 100 A 80 80 0 0 1 180 100" 
+                      stroke="url(#gradient)" 
+                      stroke-width="20" 
+                      fill="none" 
+                      stroke-linecap="round"
+                      stroke-dasharray="251.2"
+                      stroke-dashoffset="${251.2 - (251.2 * scorePercentage / 100)}"
+                      class="gauge-fill"
+                      style="--gauge-offset: ${251.2 - (251.2 * scorePercentage / 100)}"/>
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#dc3545;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#ffc107;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#28a745;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              
+              <!-- Score Display -->
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <div class="text-5xl font-extrabold ${colors.text}" id="score-display">${scorePercentage}</div>
+                <div class="text-gray-500 font-semibold">out of 100</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="${colors.bg} ${colors.text} inline-flex items-center px-6 py-3 rounded-full text-lg font-bold mb-4">
+            <span class="text-2xl mr-2">${riskInfo.icon}</span>
+            ${riskInfo.level}
+          </div>
+          
+          <p class="text-xl text-gray-700 max-w-2xl mx-auto">
+            ${riskInfo.message}
+          </p>
+        </div>
+        
+        <!-- Insights Section -->
+        <div class="mb-12">
+          <h2 class="text-2xl sm:text-3xl font-bold text-trinity-navy mb-6 text-center">
+            Your Personalized Heart Health Insights
+          </h2>
+          
+          <div class="space-y-6">
+            ${insights.map((insight, index) => `
+              <div class="bg-white border-l-4 ${colors.border} rounded-xl p-6 shadow-md animate-fade-in stagger-${index + 1}">
+                <div class="flex items-start">
+                  <div class="flex-shrink-0 text-4xl mr-4">${insight.icon}</div>
+                  <div class="flex-grow">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">${insight.title}</h3>
+                    <p class="text-gray-700 leading-relaxed mb-3">${insight.text}</p>
+                    ${insight.scripture ? `
+                      <div class="bg-blue-50 border-l-4 border-blue-500 pl-4 py-2 mt-3 italic text-sm text-blue-900">
+                        ${insight.scripture}
+                      </div>
+                    ` : ''}
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        
+        <!-- Risk Factors Summary (if any) -->
+        ${riskInfo.riskFactors.length > 0 ? `
+          <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 mb-12 animate-fade-in stagger-4">
+            <h3 class="text-xl font-bold text-red-900 mb-4 flex items-center">
+              <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+              </svg>
+              Key Risk Factors Identified
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              ${riskInfo.riskFactors.map(factor => `
+                <span class="bg-red-200 text-red-800 px-4 py-2 rounded-full text-sm font-semibold">
+                  ${factor}
+                </span>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+        
+        <!-- Next Steps Section -->
+        ${generateNextSteps(qualification, riskInfo, contact)}
+        
+        <!-- Social Proof -->
+        <div class="bg-gradient-to-br from-trinity-light to-white rounded-2xl p-6 sm:p-8 mb-8 animate-fade-in stagger-4">
+          <h3 class="text-2xl font-bold text-trinity-navy text-center mb-6">
+            Join Other Nigerian Pastors Who've Transformed Their Health
+          </h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white border-2 border-gray-200 rounded-xl p-5">
+              <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-gray-900">Pastor John</p>
+                  <p class="text-sm text-gray-600">Lagos</p>
+                </div>
+              </div>
+              <p class="text-gray-700 text-sm italic mb-3">
+                "My blood pressure is now stable, and I have more energy for my ministry."
+              </p>
+              <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold inline-block">
+                BP: 165/95 → 125/80
+              </div>
+            </div>
+            
+            <div class="bg-white border-2 border-gray-200 rounded-xl p-5">
+              <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                  <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-gray-900">Pastor David</p>
+                  <p class="text-sm text-gray-600">Abuja</p>
+                </div>
+              </div>
+              <p class="text-gray-700 text-sm italic mb-3">
+                "The scorecard was a real eye-opener. I feel like a new person."
+              </p>
+              <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold inline-block">
+                Energy: 3/10 → 9/10
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('results-container').innerHTML = html;
+      
+      // Log to Google Sheets
+      const dataToLog = {
+        timestamp: resultData.timestamp,
+        fullName: contact.fullName,
+        email: contact.email,
+        whatsapp: contact.whatsapp,
+        ...Object.fromEntries(
+          Object.entries(answers).map(([key, val]) => [`${key}_answer`, val])
+        ),
+        finalScore: scorePercentage,
+        scoreOutOf: 100,
+        totalPoints: scoring.totalPoints,
+        maxPoints: scoring.maxPoints,
+        riskLevel: riskInfo.level,
+        riskFactorsIdentified: riskInfo.riskFactors.join(', '),
+        qualificationScore: qualification.score,
+        isHighlyQualified: qualification.isHighlyQualified,
+        buyingIntent: qualification.buyingIntent,
+        primaryGoal: qualification.primaryGoal,
+        mainObstacle: qualification.mainObstacle,
+        timeToComplete: resultData.completionTime,
+        completedFullAssessment: true,
+        clickedWhatsApp: false,
+        visitedBlog: false,
+        recommendationType: qualification.isHighlyQualified ? 'Immediate Coach Contact' : 'Education/Resources',
+        sourceURL: window.location.href,
+        userAgent: navigator.userAgent.substring(0, 200),
+        referrer: document.referrer
+      };
+      
+      logToGoogleSheets(dataToLog);
+    }
+
+    // Tracking functions
+    function trackWhatsAppClick() {
+      const resultData = JSON.parse(sessionStorage.getItem('quizResult') || '{}');
+      resultData.clickedWhatsApp = true;
+      sessionStorage.setItem('quizResult', JSON.stringify(resultData));
+      
+      // Update Google Sheets
+      logToGoogleSheets({
+        timestamp: new Date().toISOString(),
+        email: resultData.contact?.email,
+        clickedWhatsApp: true
+      });
+    }
+
+    function trackBlogClick() {
+      const resultData = JSON.parse(sessionStorage.getItem('quizResult') || '{}');
+      resultData.visitedBlog = true;
+      sessionStorage.setItem('quizResult', JSON.stringify(resultData));
+      
+      // Update Google Sheets
+      logToGoogleSheets({
+        timestamp: new Date().toISOString(),
+        email: resultData.contact?.email,
+        visitedBlog: true
+      });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', renderResults);
+  </script>
+</body>
+</html>
