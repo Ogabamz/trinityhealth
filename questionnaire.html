@@ -514,6 +514,16 @@
         whatsapp,
         startTime: Date.now()
       }));
+
+      // Track Lead event with Meta Pixel
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'Heart Health Assessment',
+          content_category: 'Questionnaire',
+          value: 1,
+          currency: 'USD'
+        });
+      }
       
       // Hide contact section, show quiz
       document.getElementById('contact-section').classList.add('hidden');
